@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Profil Saya ✨</title>
+    <!-- Google Fonts: Quicksand & Fredoka untuk kesan Whimsical & Playful -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pastel-yellow: #FFF9E6;
+            --pastel-green: #E2F0D9;
+            --pastel-pink: #FFE5EC;
+            --accent-pink: #FF8FAB;
+            --accent-green: #70A9A1;
+            --accent-yellow: #FFD166;
+            --text-dark: #4A4A4A;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-yellow), var(--pastel-pink), var(--pastel-green));
+            background-size: 300% 300%;
+            animation: gradientAnimation 12s ease infinite;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            border: 4px dashed var(--accent-pink);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 12px 35px rgba(255, 143, 171, 0.2);
+            position: relative;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        /* Dekorasi Whimsical */
+        .container::before {
+            content: '⭐';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            font-size: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        .container::after {
+            content: '💖';
+            position: absolute;
+            bottom: -15px;
+            right: 35px;
+            font-size: 28px;
+            animation: bounce 2.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Header & Profile Frame */
+        .header-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            border-bottom: 3px dotted var(--pastel-green);
+            padding-bottom: 20px;
+        }
+
+        .profile-frame {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-yellow), var(--accent-pink));
+            padding: 4px;
+            flex-shrink: 0;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #fff;
+        }
+
+        .profile-title h1 {
+            font-family: 'Fredoka', cursive;
+            font-size: 24px;
+            color: var(--accent-pink);
+            margin-bottom: 5px;
+        }
+
+        .profile-title p {
+            font-size: 14px;
+            color: #777;
+            font-weight: 700;
+        }
+
+        /* Progress Bar / Chapter Badge */
+        .chapter-badge {
+            display: inline-block;
+            background-color: var(--pastel-green);
+            color: #3b5a4a;
+            font-family: 'Fredoka', cursive;
+            font-size: 13px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Story Text Box */
+        .story-box {
+            font-size: 16px;
+            line-height: 1.7;
+            min-height: 110px;
+            margin-bottom: 25px;
+            background-color: #FAFAFA;
+            border-radius: 15px;
+            padding: 18px;
+            border: 2px solid #F0F0F0;
+        }
+
+        /* Choices Button Container */
+        .choices-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .choice-btn {
+            background-color: var(--pastel-yellow);
+            border: 2px solid var(--accent-yellow);
+            color: var(--text-dark);
+            padding: 14px 18px;
+            border-radius: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .choice-btn:hover {
+            background-color: var(--accent-yellow);
+            transform: translateX(5px);
+            box-shadow: 0 6px 15px rgba(255, 209, 102, 0.3);
+        }
+
+        .choice-btn::after {
+            content: '✨';
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .choice-btn:hover::after {
+            opacity: 1;
+        }
+
+        .choice-btn.pink {
+            background-color: var(--pastel-pink);
+            border-color: var(--accent-pink);
+        }
+        .choice-btn.pink:hover {
+            background-color: var(--accent-pink);
+            color: white;
+        }
+
+        .choice-btn.green {
+            background-color: var(--pastel-green);
+            border-color: var(--accent-green);
+        }
+        .choice-btn.green:hover {
+            background-color: var(--accent-green);
+            color: white;
+        }
+
+        /* Fade Animation for Story Transition */
+        .fade-in {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Mobile Styling */
+        @media (max-width: 480px) {
+            .header-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header & Foto Profil -->
+        <div class="header-section">
+            <div class="profile-frame">
+                <!-- Ganti link gambar di bawah dengan foto profil Anda -->
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Foto Profil" class="profile-img">
+            </div>
+            <div class="profile-title">
+                <h1 id="user-name">Nama Anda</h1>
+                <p>✨ Web Developer & Creative Explorer ✨</p>
+            </div>
+        </div>
+
+        <!-- Status Chapter -->
+        <div>
+            <span id="chapter-badge" class="chapter-badge">Bab 1: Awal Mula Petualangan</span>
+        </div>
+
+        <!-- Kotak Narasi Cerita -->
+        <div id="story-box" class="story-box fade-in">
+            Halo! Selamat datang di profil interaktif saya. Alih-alih membaca CV yang kaku, mari kita berkenalan lewat jalur petualangan cerita. Pilih salah satu jalur di bawah untuk mulai menjelajah!
+        </div>
+
+        <!-- Pilihan Tombol Interaktif -->
+        <div id="choices-container" class="choices-container fade-in">
+            <!-- Tombol dimuat secara dinamis via JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Struktur Data Skenario Cerita (Choose Your Own Adventure)
+        const storyData = {
+            start: {
+                chapter: "Bab 1: Gerbang Utama",
+                text: "Halo! Selamat datang di profil interaktif saya. Saya adalah seorang Web Developer yang gemar merangkai kode menjadi pengalaman web yang unik. Mau kenalan lebih jauh lewat jalur mana hari ini?",
+                choices: [
+                    { text: "🚀 Ingin tahu latar belakang & perjalanan karier saya", next: "career" },
+                    { text: "💡 Langsung lihat proyek-proyek keren buatan saya", next: "projects" },
+                    { text: "🎨 Mau intip sisi lain & hobi santai saya", next: "hobbies" }
+                ]
+            },
+            career: {
+                chapter: "Bab 2: Perjalanan & Keahlian",
+                text: "Perjalanan saya di dunia web dimulai dari rasa penasaran bagaimana sebuah tombol bisa mengubah tampilan layar. Sekarang, saya menguasai HTML, CSS, dan JavaScript modern untuk meracik aplikasi web yang responsif dan interaktif!",
+                choices: [
+                    { text: "💻 Penasaran dengan proyek yang pernah saya buat", next: "projects" },
+                    { text: "☕ Ingin tahu keseruan saya di luar koding", next: "hobbies" },
+                    { text: "🔄 Kembali ke menu utama", next: "start", color: "green" }
+                ]
+            },
+            projects: {
+                chapter: "Bab 2: Galeri Karya",
+                text: "Beberapa karya favorit saya mencakup aplikasi web interaktif, tool produktivitas minimalis, hingga website portofolio tematik. Semuanya dibangun dengan kode yang bersih dan perhatian penuh pada detail visual.",
+                choices: [
+                    { text: "💼 Hubungi saya untuk kolaborasi proyek", next: "contact", color: "pink" },
+                    { text: "📖 Baca kisah karier saya", next: "career" },
+                    { text: "🔄 Kembali ke menu utama", next: "start", color: "green" }
+                ]
+            },
+            hobbies: {
+                chapter: "Bab 2: Sisi Lain / Hobi",
+                text: "Di luar layar monitor, Anda bisa menemukan saya sedang menyeruput secangkir kopi hangat sambil membaca buku fiksi, merawat tanaman hias kesayangan, atau bereksperimen dengan desain visual yang unik.",
+                choices: [
+                    { text: "🚀 Lihat skill & perjalanan karier saya", next: "career" },
+                    { text: "💌 Ingin langsung terhubung / kirim pesan?", next: "contact", color: "pink" },
+                    { text: "🔄 Kembali ke menu utama", next: "start", color: "green" }
+                ]
+            },
+            contact: {
+                chapter: "Bab 3: Hubungi Saya ✨",
+                text: "Senang bisa berkenalan dengan Anda sampai sejauh ini! Jika Anda ingin merekrut, mengajak berkolaborasi, atau sekadar menyapa, pintu selalu terbuka lebar.",
+                choices: [
+                    { text: "📧 Kirim Email (email@domain.com)", action: "email", color: "pink" },
+                    { text: "🔗 Kunjungi LinkedIn / GitHub Saya", action: "social", color: "green" },
+                    { text: "🔄 Mulai ulang petualangan dari awal", next: "start" }
+                ]
+            }
+        };
+
+        // Fungsi untuk merender cerita berdasarkan key node
+        function renderStory(nodeKey) {
+            const node = storyData[nodeKey];
+            const storyBox = document.getElementById('story-box');
+            const chapterBadge = document.getElementById('chapter-badge');
+            const choicesContainer = document.getElementById('choices-container');
+
+            // Reset animasi fade-in dengan menghapus class lalu menambahkannya kembali
+            storyBox.classList.remove('fade-in');
+            choicesContainer.classList.remove('fade-in');
+            void storyBox.offsetWidth; // Trigger reflow
+
+            // Update Konten
+            chapterBadge.innerText = node.chapter;
+            storyBox.innerText = node.text;
+            choicesContainer.innerHTML = '';
+
+            // Render Tombol Pilihan Baru
+            node.choices.forEach(choice => {
+                const btn = document.createElement('button');
+                btn.className = `choice-btn ${choice.color || ''}`;
+                btn.innerText = choice.text;
+
+                btn.onclick = () => {
+                    if (choice.action === 'email') {
+                        window.location.href = "mailto:emailanda@domain.com";
+                    } else if (choice.action === 'social') {
+                        alert("Silakan arahkan tautan ini ke profil GitHub atau LinkedIn Anda!");
+                    } else if (choice.next) {
+                        renderStory(choice.next);
+                    }
+                };
+
+                choicesContainer.appendChild(btn);
+            });
+
+            storyBox.classList.add('fade-in');
+            choicesContainer.classList.add('fade-in');
+        }
+
+        // Inisialisasi awal saat halaman dimuat
+        window.onload = () => {
+            renderStory('start');
+        };
+    </script>
+</body>
+</html>
